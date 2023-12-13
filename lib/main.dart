@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/view/NowPlayingPage.dart';
 import 'package:music_app/view/PodCastPage.dart';
 import 'package:music_app/view/SearchPage.dart';
 import 'package:music_app/view/SettingsPage.dart';
@@ -29,13 +30,24 @@ class _MyHomePageState extends State<MyHomePage> {
   static List<Widget> _widgetOptions = <Widget>[
     HomePage(),
     DarkSearchPage(),
-    Text('Favorites Page'),
+    (Home.currentSongPlaying != null)
+        ? NowPlayingPage(Home.currentSongPlaying!)
+        : Text("Now Playing"),
     PodCastsPage(),
     SettingsPage(),
   ];
 
   void _onItemTapped(int index) {
     setState(() {
+      _widgetOptions = <Widget>[
+        HomePage(),
+        DarkSearchPage(),
+        (Home.currentSongPlaying != null)
+            ? NowPlayingPage(Home.currentSongPlaying!)
+            : Text("Now Playing"),
+        PodCastsPage(),
+        SettingsPage(),
+      ];
       _selectedIndex = index;
     });
   }
@@ -55,18 +67,25 @@ class _MyHomePageState extends State<MyHomePage> {
             label: '',
           ),
           BottomNavigationBarItem(
+            backgroundColor: Colors.black,
             icon: Icon(Icons.search),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
+            backgroundColor: Colors.black,
+            icon: Icon(
+              Icons.headphones,
+              color: Colors.pinkAccent,
+            ),
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            backgroundColor: Colors.black,
+            icon: Icon(Icons.podcasts),
             label: '',
           ),
           BottomNavigationBarItem(
+            backgroundColor: Colors.black,
             icon: Icon(Icons.settings),
             label: '',
           ),

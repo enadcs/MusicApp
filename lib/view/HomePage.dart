@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:music_app/controller/AudioController.dart';
+import 'package:music_app/model/SongBean.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -13,6 +14,8 @@ class HomePage extends StatelessWidget {
 }
 
 class Home extends StatelessWidget {
+
+  static Song? currentSongPlaying=null;
   static var audioController = Get.put(AudioController());
   Duration _duration = Duration();
   Duration _position = Duration();
